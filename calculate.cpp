@@ -8,6 +8,9 @@ namespace bullpgia {
     string copyGuess(guess);
     int bull=0;
     int pgia=0;
+    int counter [9]={0};
+//     std::cout << "choice" << choice << std::endl;
+//     std::cout << "guess" << guess << std::endl;
       for (int i=0;i<choice.length();i++)
       {
       if (choice.at(i)==guess.at(i))
@@ -15,19 +18,20 @@ namespace bullpgia {
        bull++;
        copyGuess.at(i)='!';
       }
-      }
-      for (int i=0;i<choice.length();i++)
+      else
       {
+        counter[(int)choice.at(i)-(int)'0']++;
+      }
+      }
         for (int j=0;j<copyGuess.length();j++)
         {
- 
-          if (choice.at(i)==copyGuess.at(j))
-          { 
+          if (copyGuess.at(j)!='!'&&counter[(int)copyGuess.at(j)-(int)'0']>0)
+          {
+            counter[(int)copyGuess.at(j)-(int)'0']--;
             pgia++;
-            copyGuess.at(j)='!';
           }
         }
-      }
+      
      
       string answer=std::to_string(bull)+','+std::to_string(pgia);
       return answer;
