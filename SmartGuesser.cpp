@@ -3,10 +3,8 @@
 #include <string>
 using std::string;
 
-
 string SmartGuesser::guess() {
 
-  std::cout << "guess" << std::endl;
      for (int i=0;i<10000;i++)
     {
         if (this->a[i]==true)
@@ -22,7 +20,7 @@ void SmartGuesser::startNewGame(uint length){
     }
 }
 void SmartGuesser::learn(string reply){ 
-    std::cout << "roio" << std::endl;
+    
     for (int i=0;i<10000;i++)
     {
         
@@ -38,6 +36,8 @@ void SmartGuesser::learn(string reply){
  string SmartGuesser::convertIndexTOstr(int j){
     string s;
     string i=std::to_string(j);
+    if (this->length==4)
+    {
     if (j<10)
     {
     s="000"+i;
@@ -52,5 +52,32 @@ void SmartGuesser::learn(string reply){
     }
     else 
     s=i;
+    }
+    else if (this->length==3)
+    {
+    if (j<10)
+    {
+    s="00"+i;
+    }
+    else if (j<100)
+    {
+    s="0"+i;
+    }
+    else 
+    s=i;
+ }
+else if (this->length==2)
+  {
+  if (j<10)
+    {
+    s="0"+i;
+    }
+    else 
+    s=i;
+  }
+  else
+  {
+      s=i;
+  } 
     return s;
  }
