@@ -12,3 +12,4 @@ class Guesser{
     virtual void learn(string reply){};
 };
 }
+
