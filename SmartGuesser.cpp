@@ -9,7 +9,11 @@ string SmartGuesser::guess() {
     this->whatTOguess=this->myOptions.front();
     return this->whatTOguess;
 }
-void SmartGuesser::startNewGame(uint length){  
+void SmartGuesser::startNewGame(uint length){ 
+       if (!myOptions.empty())
+    {
+        myOptions.clear();
+     } 
     this->length=length;
     int time =1;
      for (int i=0;i<this->length;i++){
