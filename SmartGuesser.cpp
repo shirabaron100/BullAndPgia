@@ -1,43 +1,34 @@
 #include "SmartGuesser.hpp"
 #include "Guesser.hpp"
 #include <string>
+#include <list>
+#include <iterator>
 using std::string;
 
 string SmartGuesser::guess() {
-
-     for (int i=0;i<10000;i++)
-    {
-        //std::cout << "shira" << i  << std::endl;
-        if (this->a[i]==true)
-        {
-        // std::cout << "index" << i  << std::endl;
-        this->whatTOguess=SmartGuesser::convertIndexTOstr(i);
-         return this->whatTOguess;
-        }
-       // std::cout << " what" << this->whatTOguess.length() << std::endl;
-    }
-
+    this->whatTOguess=this->myOptions.front();
+    return this->whatTOguess;
 }
 void SmartGuesser::startNewGame(uint length){  
     this->length=length;
-    //std::cout << "length" << this->length <<  std::endl;
-    for (int i=0;i<10000;i++)
+    int time =1;
+     for (int i=0;i<this->length;i++){
+           time=time*10;
+     }
+    // std::cout << time << std::endl;
+    for (int i=0;i<time;i++)
     {
-        this->a[i]=true;
+    string s=SmartGuesser::convertIndexTOstr(i);
+    this->myOptions.push_back(s);
     }
 }
 void SmartGuesser::learn(string reply){ 
     
-    for (int i=0;i<10000;i++)
-    {
-        //std::cout << "i" << i << std::endl;
-        string s=SmartGuesser::convertIndexTOstr(i);
-       if(s.compare("??")==0)
-       return;
-        if (bullpgia::calculateBullAndPgia(s,whatTOguess).compare(reply)!=0)
+    for (auto itr = myOptions.begin(); itr != myOptions.end(); itr++)
+    { 
+        if (bullpgia::calculateBullAndPgia(*itr,whatTOguess).compare(reply)!=0)
         {
-          //std::cout << "false" << std::endl;
-            this->a[i]=false;
+          itr = myOptions.erase(itr);
         }
     }
 }
