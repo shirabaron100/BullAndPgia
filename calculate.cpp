@@ -23,7 +23,7 @@ namespace bullpgia {
         counter[(int)choice.at(i)-(int)'0']++;
       }
       }
-        for (int j=0;j<copyGuess.length()&&j<choice.length();j++)
+        for (int j=0;j<copyGuess.length();j++)
         {
           if (copyGuess.at(j)!='!'&&counter[(int)copyGuess.at(j)-(int)'0']>0)
           {
